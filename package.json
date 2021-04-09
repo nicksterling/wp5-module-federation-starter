@@ -1,0 +1,19 @@
+{
+  "name": "wp5-starter",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "serve": "npx serve dist -p 8080",
+    "start": "webpack serve --open --mode development --liveReload"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.1",
+    "serve": "^11.3.2",
+    "webpack": "5.31.2",
+    "webpack-cli": "4.6.0",
+    "webpack-dev-server": "3.11.2"
+  },
+  "dependencies": {}
+}
