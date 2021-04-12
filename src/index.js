@@ -1,1 +1,2 @@
-console.log("Index.js Loaded")
+import bootstrap from "./bootstrap";
+bootstrap(() => { });
