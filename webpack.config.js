@@ -1,26 +1,28 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+//const deps = require("./package.json").dependencies;
 
 module.exports = {
+  mode: "production",
+  // devtool: "eval-cheap-module-source-map",
   devServer: {
     port: 3000,
   },
   output: {
     publicPath: "auto",
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
-      {
-        test: /bootstrap\.js$/,
-        loader: "bundle-loader",
-        options: {
-          lazy: true,
-        },
-      },
       {
         test: /\.jsx?$/,
         loader: "babel-loader",
         exclude: /node_modules/,
+        options: {
+          presets: ["@babel/preset-react"],
+        },
       },
     ],
   },
@@ -31,8 +33,10 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {},
       remotes: {},
-      shared: {},
+      shared: [],
     }),
-    new HtmlWebpackPlugin({}),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html"
+    }),
   ],
 };

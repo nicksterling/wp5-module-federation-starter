@@ -3,22 +3,23 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "@babel/core": "7.13.15",
+    "@babel/core": "7.14.0",
     "@babel/preset-react": "7.13.13",
     "babel-loader": "8.2.2",
-    "bundle-loader": "0.5.6",
     "html-webpack-plugin": "5.3.1",
     "serve": "11.3.2",
-    "webpack": "5.34.0",
+    "webpack": "5.36.2",
     "webpack-cli": "4.6.0",
     "webpack-dev-server": "3.11.2"
   },
   "scripts": {
-    "dev": "webpack serve --liveReload --mode=development",
     "build": "webpack --mode production",
-    "start": "serve dist -p 3000",
     "clean": "rm -rf dist node_modules",
-    "clean:all": "rm -rf dist node_modules yarn.lock package-lock.json"
+    "clean:all": "npm run clean && npm run clean:lockfiles",
+    "clean:lockfiles": "rm yarn.lock package-lock.json || true",
+    "dev": "webpack serve --liveReload --mode=development",
+    "generate:lockfiles": "npm run clean:all && npm i && npm run clean && npx yarn",
+    "start": "serve dist -p 3000"
   },
   "dependencies": {}
 }
